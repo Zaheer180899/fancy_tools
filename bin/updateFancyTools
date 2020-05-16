@@ -1,0 +1,14 @@
+#!/bin/bash
+
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+if [ "$branch" = "master" ]
+then
+	git add .
+        gco "$*"
+	git push origin master
+else
+	git checkout master
+	git add .
+        gco "$*"
+        git push origin master
+fi
